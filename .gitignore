@@ -101,3 +101,18 @@ docker-*.img
 *.cache
 *.tmp
 
+###############################################################################
+#  ──  PERSONAL ASSIGNMENTS (exclude from public repo) ────────────────────────
+###############################################################################
+# Exclude any actual coursework submissions to keep them private
+# Keep only the example files and templates public
+classes/*/*/EMGT*_Module-*.tex
+classes/*/*/EMGT*_Assignment*.tex
+classes/*/*/EMGT*_Project*.tex
+classes/*/*/EMGT*_Report*.tex
+classes/*/*/EMGT*_Midterm*.tex
+classes/*/*/EMGT*_Final*.tex
+
+# Allow the example file
+!classes/*/*/EMGT*_Module-*_example.tex
+
