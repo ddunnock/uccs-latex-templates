@@ -59,8 +59,8 @@ uccs-me-syse-latex/
 
 1. **Clone the repository:**
    ```bash
-   git clone [repository-url]
-   cd uccs-me-syse-latex
+   git clone https://github.com/ddunnock/uccs-latex-templates.git
+   cd uccs-latex-templates
    ```
 
 2. **Verify LaTeX engine:**
@@ -283,7 +283,7 @@ make pdf FILE=classes/TEST101/2025_test/TEST101_Test_Assignment.tex
 ### **Quick Start for UCCS Students**
 ```bash
 # Clone and start your first assignment
-git clone https://github.com/USERNAME/uccs-latex-templates.git
+git clone https://github.com/ddunnock/uccs-latex-templates.git
 cd uccs-latex-templates
 
 # Create your first homework (replace with your course)
