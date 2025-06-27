@@ -1,0 +1,18 @@
+# Configuration file for newdoc.sh script
+# Copy this file to .newdoc.conf and customize your defaults
+# Lines starting with # are comments and will be ignored
+
+# Your personal information
+STUDENT_NAME="Your Full Name"
+
+# Current semester information  
+ACAD_TERM="2025_spring"
+
+# Current course information (can be overridden per document)
+CLASS="EMGT5510"
+INSTRUCTOR="Dr. Last Name"
+COURSE_TITLE="Course Title Here"
+
+# Uncomment and customize these if you have preferred defaults:
+# TYPE="homework"
+# ASSIGN="Module-1_Homework"

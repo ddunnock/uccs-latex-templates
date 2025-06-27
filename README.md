@@ -4,7 +4,15 @@
 [![Font](https://img.shields.io/badge/Font-Fira%20Sans-green.svg)](https://fonts.google.com/specimen/Fira+Sans)
 [![Build](https://img.shields.io/badge/Build-Make%20%7C%20Tectonic-orange.svg)](https://tectonic-typesetting.github.io/)
 
-A comprehensive LaTeX document management system for UCCS (University of Colorado Colorado Springs) coursework, featuring automated document scaffolding, consistent branding, and streamlined compilation workflows.
+A comprehensive LaTeX document management system for **UCCS (University of Colorado Colorado Springs)** coursework, featuring automated document scaffolding, consistent branding, and streamlined compilation workflows.
+
+> **Perfect for UCCS students** in Engineering, Business, Computer Science, and all academic programs requiring professional document preparation. Compatible with graduate and undergraduate coursework.
+
+### 🎓 **Who Can Use This?**
+- **UCCS Students**: All departments and programs (Engineering, Business, Sciences, Liberal Arts)
+- **Other Universities**: Easily adaptable by replacing logos and color schemes
+- **Professionals**: Technical reports, project documentation, and presentations
+- **LaTeX Learners**: Well-documented examples and automation for beginners
 
 ## ✨ Features
 
@@ -92,8 +100,20 @@ COURSE_TITLE="Course Title" bash scripts/newdoc.sh
 
 **Interactive mode:**
 ```bash
+# Simple interactive mode
+make newdoc
+
+# Or run script directly
 bash scripts/newdoc.sh
-# Follow the prompts to enter course information
+
+# Example interactive session:
+# Document type [homework/report]: homework
+# Course ID (e.g. EMGT5510): EMGT5510
+# Academic term (e.g. 2025_summer): 2025_spring
+# Assignment label (e.g. HW-01): Module-1_Homework
+# Student name [Your Name]: John Smith
+# Instructor [TBD]: Dr. Johnson
+# Course title [optional]: Leadership for Engineers
 ```
 
 ### Compiling Documents
@@ -161,6 +181,38 @@ make watch FILE=classes/EMGT5510/2025_summer/EMGT5510_Module-1_Homework.tex
 
 ## 🔧 Configuration
 
+### Personal Configuration File
+
+Create a `.newdoc.conf` file in your project root or home directory to set default values for interactive mode:
+
+```bash
+# Copy the example and customize
+cp .newdoc.conf.example .newdoc.conf
+
+# Edit with your information
+nano .newdoc.conf
+```
+
+**Example configuration:**
+```bash
+# Your personal information
+STUDENT_NAME="John Smith"
+
+# Current semester information  
+ACAD_TERM="2025_spring"
+
+# Current course information
+CLASS="EMGT5510"
+INSTRUCTOR="Dr. Johnson"
+COURSE_TITLE="Leadership for Engineers"
+```
+
+**Benefits:**
+- 🚀 **Faster document creation** - Just press Enter to use defaults
+- 📝 **Consistent information** - No typos in repeated fields
+- 🔄 **Easy semester updates** - Change term once per semester
+- 👥 **Multiple courses** - Override CLASS per document as needed
+
 ### Engine Detection
 The Makefile automatically detects available LaTeX engines in this order:
 1. **Tectonic** (preferred for speed and reliability)
@@ -213,6 +265,37 @@ make newhw CLASS=TEST101 ACAD_TERM=2025_test ASSIGN="Test_Assignment" \
 # Compile the test document
 make pdf FILE=classes/TEST101/2025_test/TEST101_Test_Assignment.tex
 ```
+
+## 🏫 **For UCCS Students**
+
+### **Getting Started at UCCS**
+- **Engineering Students**: Perfect for EMGT, SYSE, ME, EE, CS coursework
+- **Business Students**: Professional reports and case study presentations  
+- **Graduate Students**: Thesis, capstone projects, and research papers
+- **All Departments**: Standardized formatting for any UCCS course
+
+### **UCCS-Specific Features**
+- ✅ **Official UCCS Logo** integrated and properly licensed
+- ✅ **University Color Scheme** (DoD Blue matching UCCS branding)
+- ✅ **Academic Year Support** (Fall/Spring/Summer terms)
+- ✅ **Course Code Format** (DEPT#### automatic formatting)
+
+### **Quick Start for UCCS Students**
+```bash
+# Clone and start your first assignment
+git clone https://github.com/USERNAME/uccs-latex-templates.git
+cd uccs-latex-templates
+
+# Create your first homework (replace with your course)
+make newhw CLASS=EMGT5510 ACAD_TERM=2025_spring ASSIGN="Assignment-1" \
+          STUDENT="Your Name" INSTRUCTOR="Dr. LastName"
+```
+
+### **Adapting for Other Universities**
+To customize for your institution:
+1. Replace `texmf/images/uccs-logo.png` with your university logo
+2. Update color scheme in templates (search for `dodblue`)
+3. Modify header text and branding elements
 
 ## 🤝 Contributing
 

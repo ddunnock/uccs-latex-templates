@@ -4,27 +4,72 @@
 # -------------------------------------------------------------
 set -euo pipefail
 
-# ─────────────── 1. Collect inputs ───────────────
+# ─────────────── 1. Load configuration file ───────────────
+load_config() {
+  local config_file=".newdoc.conf"
+  
+  # Check for config file in current directory or home directory
+  if [[ -f "$config_file" ]]; then
+    echo "📁 Loading config from ./$config_file"
+    # shellcheck source=/dev/null
+    source "$config_file"
+  elif [[ -f "$HOME/$config_file" ]]; then
+    echo "📁 Loading config from ~/$config_file"
+    # shellcheck source=/dev/null
+    source "$HOME/$config_file"
+  fi
+}
+
+# Load config before setting variables
+load_config
+
+# ─────────────── 2. Collect inputs with config defaults ───────────────
 TYPE=${TYPE:-${1:-}}
 CLASS=${CLASS:-${2:-}}
 ACAD_TERM=${ACAD_TERM:-${3:-}}           # 2025_summer, 2024_fall …
 ASSIGN=${ASSIGN:-${4:-}}                 # HW-01, Module-1_Homework, MidtermReport, …
-STUDENT=${STUDENT:-${USER}}
+STUDENT=${STUDENT:-${STUDENT_NAME:-${USER}}}
 INSTRUCTOR=${INSTRUCTOR:-"TBD"}
 COURSE_TITLE=${COURSE_TITLE:-""}
 HWNUM=${HWNUM:-""}                       # optional override
 
-prompt() { read -rp "  $1: " _tmp && printf '%s' "${_tmp:-}"; }
+# Enhanced prompt function with defaults
+prompt() {
+  local prompt_text="$1"
+  local default_val="${2:-}"
+  local user_input
+  
+  if [[ -n "$default_val" ]]; then
+    read -rp "  $prompt_text [$default_val]: " user_input
+    printf '%s' "${user_input:-$default_val}"
+  else
+    read -rp "  $prompt_text: " user_input
+    printf '%s' "${user_input:-}"
+  fi
+}
 
 if [[ -z $TYPE || -z $CLASS || -z $ACAD_TERM || -z $ASSIGN ]]; then
-  echo "Interactive mode – please provide the missing fields"
-  [[ -z $TYPE       ]] && TYPE=$(prompt "Document type [homework/report]")
-  [[ -z $CLASS      ]] && CLASS=$(prompt "Course ID (e.g. EMGT5510)")
-  [[ -z $ACAD_TERM  ]] && ACAD_TERM=$(prompt "Academic term (e.g. 2025_summer)")
-  [[ -z $ASSIGN     ]] && ASSIGN=$(prompt "Assignment label (e.g. HW-01)")
-  STUDENT=$(prompt "Student name [$STUDENT]")     || true
-  INSTRUCTOR=$(prompt "Instructor  [$INSTRUCTOR]")|| true
-  COURSE_TITLE=$(prompt "Course title [optional]")|| true
+  echo "📝 Interactive mode – please provide the missing fields"
+  echo "   (Press Enter to use default values shown in brackets)"
+  echo
+  
+  [[ -z $TYPE       ]] && TYPE=$(prompt "Document type [homework/report]" "${TYPE:-homework}")
+  [[ -z $CLASS      ]] && CLASS=$(prompt "Course ID (e.g. EMGT5510)" "$CLASS")
+  [[ -z $ACAD_TERM  ]] && ACAD_TERM=$(prompt "Academic term (e.g. 2025_summer)" "$ACAD_TERM")
+  [[ -z $ASSIGN     ]] && ASSIGN=$(prompt "Assignment label (e.g. HW-01)" "$ASSIGN")
+  
+  # Always prompt for these, but show current values as defaults
+  STUDENT=$(prompt "Student name" "$STUDENT")
+  INSTRUCTOR=$(prompt "Instructor" "$INSTRUCTOR")
+  
+  # Course title is optional
+  if [[ -n "$COURSE_TITLE" ]]; then
+    COURSE_TITLE=$(prompt "Course title [optional]" "$COURSE_TITLE")
+  else
+    COURSE_TITLE=$(prompt "Course title [optional]")
+  fi
+  
+  echo
 fi
 
 TYPE=$(printf '%s' "$TYPE" | tr '[:upper:]' '[:lower:]')

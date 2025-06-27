@@ -116,3 +116,9 @@ classes/*/*/EMGT*_Final*.tex
 # Allow the example file
 !classes/*/*/EMGT*_Module-*_example.tex
 
+###############################################################################
+#  ──  PERSONAL CONFIGURATION FILES ──────────────────────────────────────────
+###############################################################################
+# Personal configuration with student names and course info
+.newdoc.conf
+
