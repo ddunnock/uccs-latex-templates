@@ -1,8 +1,7 @@
-% !TeX program = xelatex
 % ~/projects/uccs-me-syse-latex/templates/homework_template.text
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  <COURSE ID>  Homework Template  ––  UCCS College of Engineering & Applied Science
+%  EMGT5510  Homework Template  ––  UCCS College of Engineering & Applied Science
 %  Generated: \today
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -15,7 +14,7 @@
 %------------------------------------------------------------
 %  PREAMBLE  (geometry, colors, fonts, shared asset paths)
 %------------------------------------------------------------
-\usepackage[margin=1in,headheight=14.5pt]{geometry}
+\usepackage[margin=1in]{geometry}
 \usepackage{array,tabularx,longtable,graphicx}
 \usepackage{amsmath,amssymb,mathtools}
 \usepackage{booktabs}
@@ -29,8 +28,8 @@
 
 % ---------- Shared asset search path ----------
 \makeatletter
-\def\input@path{{../../../texmf/}}
-\graphicspath{{../../../texmf/images/}}
+\def\input@path{{../texmf/}{../../texmf/}{../../../texmf/}}
+\graphicspath{{../texmf/images/}{../../texmf/images/}{../../../texmf/images/}}
 \makeatother
 % ----------------------------------------------
 
@@ -42,7 +41,7 @@
 \usepackage{fontspec}
 % Body text – Fira Sans Regular/Bold/Italic
 \setmainfont[
-  Path       = ../../../texmf/fonts/otf/,
+  Path       = ../texmf/fonts/otf/,
   Extension  = .otf,
   UprightFont= *-Regular,
   BoldFont   = *-Bold,
@@ -50,7 +49,7 @@
 ]{FiraSans}
 % Heading font – light weight variant
 \newfontfamily\HeadingFont[
-  Path       = ../../../texmf/fonts/otf/,
+  Path       = ../texmf/fonts/otf/,
   Extension  = .otf
 ]{FiraSans-Light}
 % ----------------------------------------------
@@ -69,7 +68,7 @@
 % — left header – student name placeholder
 \lhead{<Student Name>}
 % — right header – course & term placeholder
-\rhead{<Term / Year> – <COURSE ID>}
+\rhead{<Term / Year> – EMGT5510}
 % — footer page number
 \cfoot{\thepage}
 % ----------------------------------------------
@@ -100,8 +99,8 @@
     % UCCS signature logo
     \includegraphics[width=0.9\textwidth,keepaspectratio]{uccs-logo.png}\\[8\baselineskip]
 
-    {\HeadingFont\fontsize{24}{26}\selectfont\textbf{<COURSE ID>}}\\[0.25\baselineskip]
-    {\large <Course Title>}\\[0.15\baselineskip]
+    {\HeadingFont\fontsize{24}{26}\selectfont\textbf{EMGT5510}}\\[0.25\baselineskip]
+    {\large Leadership for Engineers}\\[0.15\baselineskip]
     {\small <Professor / Instructor>}\\[2\baselineskip]
 \vfill
 

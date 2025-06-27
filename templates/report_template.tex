@@ -10,8 +10,7 @@
 %------------------------------------------------------------
 %  PREAMBLE  (typography, colors, asset paths)
 %------------------------------------------------------------
-\usepackage{geometry}
-\geometry{margin=1in}
+\usepackage[margin=1in,headheight=14.5pt]{geometry}
 \usepackage{array,tabularx,longtable,graphicx,caption,amssymb,amsmath}
 \usepackage[table]{xcolor}
 
@@ -21,8 +20,8 @@
 
 % ---------- Shared asset search path ----------
 \makeatletter
-\def\input@path{{../texmf/}{../../texmf/}{../../../texmf/}}
-\graphicspath{{../texmf/images/}{../../texmf/images/}{../../../texmf/images/}}
+\def\input@path{{../../../texmf/}}
+\graphicspath{{../../../texmf/images/}}
 \makeatother
 % ----------------------------------------------
 
@@ -30,7 +29,7 @@
 \usepackage{fontspec}
 % Main body font: Fira Sans family copied into texmf/fonts/otf/
 \setmainfont[
-  Path       = ../texmf/fonts/otf/,
+  Path       = ../../../texmf/fonts/otf/,
   Extension  = .otf,
   UprightFont= *-Regular,
   BoldFont   = *-Bold,
@@ -38,7 +37,7 @@
 ]{FiraSans}
 % Heading font: light weight for contrast
 \newfontfamily\HeadingFont[
-  Path       = ../texmf/fonts/otf/,
+  Path       = ../../../texmf/fonts/otf/,
   Extension  = .otf
 ]{FiraSans-Light}
 % ----------------------------------------------
