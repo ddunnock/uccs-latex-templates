@@ -233,7 +233,13 @@ Contributions are welcome! Please:
 
 ## 📜 License
 
-[Add appropriate license information]
+This project is licensed under the **MIT License** for all original source code, build scripts, and supporting files.
+
+**Important**: The repository contains third-party assets with different licensing:
+- **Fira Sans fonts**: Licensed under SIL Open Font License (OFL-1.1)
+- **UCCS logo**: Trademark of University of Colorado (academic use only)
+
+See the [LICENSE](LICENSE) file for complete details and compliance requirements.
 
 ## 🙏 Acknowledgments
 
