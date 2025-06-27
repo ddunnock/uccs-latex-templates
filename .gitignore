@@ -1,0 +1,103 @@
+###############################################################################
+#  ──  GLOBAL BUILD ARTEFACTS ────────────────────────────────────────────────
+###############################################################################
+# LaTeX engines (pdfLaTeX / LuaLaTeX / XeLaTeX / tectonic / latexmk)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.vrb
+*.synctex
+*.xdv
+*.thm
+*.lof
+*.lot
+
+# Glossaries / indices
+*.acn
+*.acr
+*.alg
+*.glo
+*.gls
+*.glg
+*.ist
+*.idx
+*.ind
+*.ilg
+
+###############################################################################
+#  ──  FIGURE & PLOT INTERMEDIATES ───────────────────────────────────────────
+###############################################################################
+# TikZ / PGF generation files
+*.dpth
+*.dep
+*.pdf_tex
+
+# Matplotlib / gnuplot temp files (if generated via shell-esc)
+*.table
+*.gnuplot
+
+###############################################################################
+#  ──  OUTPUT BINARIES (PDF, DVI, PS) ────────────────────────────────────────
+###############################################################################
+# Comment-out the next line if you **do** want to version final PDFs
+*.pdf
+
+###############################################################################
+#  ──  EDITOR / OS CRUFT ─────────────────────────────────────────────────────
+###############################################################################
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*.swp
+*.swo
+*~
+
+# VS Code
+.vscode/
+.history/
+
+# JetBrains IDEs
+.idea/
+
+###############################################################################
+#  ──  CONTAINER & ENVIRONMENT BUILD OUTPUTS ────────────────────────────────
+###############################################################################
+build/
+dist/
+.nox/
+.python-env/           # direnv or virtualenv
+__pycache__/
+
+# Nix
+.result-*              # nix-build symlink
+.nix-shell-env/
+
+# Docker
+docker-*.img
+*.tar
+
+###############################################################################
+#  ──  CI/CD RUNTIME FILES (generated on the fly) ────────────────────────────
+###############################################################################
+*.log.*
+*.cache
+*.tmp
+
