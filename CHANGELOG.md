@@ -5,6 +5,24 @@ All notable changes to the UCCS LaTeX Templates project will be documented in th
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-06-28
+
+### Added
+
+#### Templates & Document Generation
+- New template examples section in README.md
+- Images showcasing title and content pages of templates
+- Updated homework and report templates with module/assignment info and persistent headers
+
+#### Toolchain Improvements
+- Added support for sanitized filenames in newdoc.sh script
+
+#### Documentation & User Experience
+- Comprehensive Template Examples section in README.md with visuals and explanations
+- Improved markdown formatting for visual appeal
+
+---
+
 ## [Unreleased]
 
 ## [1.0.0] - 2025-06-27
@@ -137,5 +155,6 @@ This project follows [Semantic Versioning](https://semver.org/):
 ### Contributing
 See [README.md](README.md) for contribution guidelines and development setup.
 
-[Unreleased]: https://github.com/ddunnock/uccs-latex-templates/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/ddunnock/uccs-latex-templates/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/ddunnock/uccs-latex-templates/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/ddunnock/uccs-latex-templates/releases/tag/v1.0.0

@@ -1,6 +1,6 @@
 # UCCS LaTeX Coursework Toolchain
 
-[![Version](https://img.shields.io/github/v/release/ddunnock/uccs-latex-templates?label=version)](https://github.com/ddunnock/uccs-latex-templates/releases)
+[![Version](https://img.shields.io/badge/version-v1.1.0-blue)](https://github.com/ddunnock/uccs-latex-templates/releases)
 [![LaTeX](https://img.shields.io/badge/LaTeX-XeLaTeX-blue.svg)](https://www.latex-project.org/)
 [![Font](https://img.shields.io/badge/Font-Fira%20Sans-green.svg)](https://fonts.google.com/specimen/Fira+Sans)
 [![Build](https://img.shields.io/badge/Build-Make%20%7C%20Tectonic-orange.svg)](https://tectonic-typesetting.github.io/)
