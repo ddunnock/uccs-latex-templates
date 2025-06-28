@@ -24,6 +24,55 @@ A comprehensive LaTeX document management system for **UCCS (University of Color
 - **🛠️ Makefile Integration**: Streamlined build processes and workflow automation
 - **🔤 Custom Font Integration**: Complete Fira Sans font family with proper XeLaTeX configuration
 
+## 📖 Template Examples
+
+The toolchain provides two professionally-styled templates designed for UCCS academic work. Both templates feature consistent branding, proper typography, and automated content generation.
+
+### Homework Template
+
+Optimized for assignments, problem sets, and take-home exams with a compact layout and mathematical typesetting support.
+
+<div align="center">
+
+**Title Page**
+
+<img src="images/homework_title_page.png" alt="Homework Template - Title Page" width="600">
+
+**Content Page**
+
+<img src="images/homework_content_page.png" alt="Homework Template - Content Page" width="600">
+
+</div>
+
+**Key Features:**
+- Compact title block with course information and assignment details
+- Styled problem environments with DoD-blue highlighting
+- Mathematical equation support with proper numbering
+- Headers/footers on all pages for identification
+
+### Report Template
+
+Designed for formal reports, research papers, and capstone projects with a professional multi-page layout.
+
+<div align="center">
+
+**Title Page**
+
+<img src="images/report_title_page.png" alt="Report Template - Title Page" width="600">
+
+**Content Page**
+
+<img src="images/report_content_page.png" alt="Report Template - Content Page" width="600">
+
+</div>
+
+**Key Features:**
+- Dedicated title page with UCCS branding and course details
+- Structured sections for executive summary, analysis, and recommendations
+- Double-spaced formatting for academic standards
+- Figure numbering and citation support
+- Professional headers/footers throughout document
+
 ## 📂 Repository Structure
 
 ```

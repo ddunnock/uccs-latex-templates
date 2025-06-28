@@ -27,11 +27,11 @@ load_config
 TYPE=${TYPE:-${1:-}}
 CLASS=${CLASS:-${2:-}}
 ACAD_TERM=${ACAD_TERM:-${3:-}}           # 2025_summer, 2024_fall …
-ASSIGN=${ASSIGN:-${4:-}}                 # HW-01, Module-1_Homework, MidtermReport, …
+MODULE_NUM=${MODULE_NUM:-${4:-}}         # Module number (1, 2, 3, etc.)
+ASSIGN_TITLE=${ASSIGN_TITLE:-${5:-}}     # Assignment title (free text)
 STUDENT=${STUDENT:-${STUDENT_NAME:-${USER}}}
 INSTRUCTOR=${INSTRUCTOR:-"TBD"}
 COURSE_TITLE=${COURSE_TITLE:-""}
-HWNUM=${HWNUM:-""}                       # optional override
 
 # Enhanced prompt function with defaults
 prompt() {
@@ -48,15 +48,16 @@ prompt() {
   fi
 }
 
-if [[ -z $TYPE || -z $CLASS || -z $ACAD_TERM || -z $ASSIGN ]]; then
+if [[ -z $TYPE || -z $CLASS || -z $ACAD_TERM || -z $MODULE_NUM || -z $ASSIGN_TITLE ]]; then
   echo "📝 Interactive mode – please provide the missing fields"
   echo "   (Press Enter to use default values shown in brackets)"
   echo
   
-  [[ -z $TYPE       ]] && TYPE=$(prompt "Document type [homework/report]" "${TYPE:-homework}")
-  [[ -z $CLASS      ]] && CLASS=$(prompt "Course ID (e.g. EMGT5510)" "$CLASS")
-  [[ -z $ACAD_TERM  ]] && ACAD_TERM=$(prompt "Academic term (e.g. 2025_summer)" "$ACAD_TERM")
-  [[ -z $ASSIGN     ]] && ASSIGN=$(prompt "Assignment label (e.g. HW-01)" "$ASSIGN")
+  [[ -z $TYPE        ]] && TYPE=$(prompt "Document type [homework/report]" "${TYPE:-homework}")
+  [[ -z $CLASS       ]] && CLASS=$(prompt "Course ID (e.g. EMGT5510)" "$CLASS")
+  [[ -z $ACAD_TERM   ]] && ACAD_TERM=$(prompt "Academic term (e.g. 2025_summer)" "$ACAD_TERM")
+  [[ -z $MODULE_NUM  ]] && MODULE_NUM=$(prompt "Module number (e.g. 1, 2, 3)" "$MODULE_NUM")
+  [[ -z $ASSIGN_TITLE ]] && ASSIGN_TITLE=$(prompt "Assignment title (e.g. Case Study Analysis)" "$ASSIGN_TITLE")
   
   # Always prompt for these, but show current values as defaults
   STUDENT=$(prompt "Student name" "$STUDENT")
@@ -75,10 +76,35 @@ fi
 TYPE=$(printf '%s' "$TYPE" | tr '[:upper:]' '[:lower:]')
 [[ $TYPE =~ ^(homework|report)$ ]] || { echo "TYPE must be homework or report"; exit 1; }
 
-# ─────────────── 2. Homework number derivation (numeric only) ───────────────
-if [[ $TYPE == homework && -z $HWNUM ]]; then
-  HWNUM=$(printf '%s' "$ASSIGN" | grep -Eo '[0-9]+' | head -1 || true)
-  [[ -n $HWNUM ]] && HWNUM=$(printf '%02d' "$HWNUM")
+# ─────────────── 2. Filename generation ───────────────
+# Function to sanitize text for cross-platform filenames
+sanitize_filename() {
+  local text="$1"
+  # Convert to lowercase, replace spaces with hyphens, remove special chars
+  printf '%s' "$text" | \
+    tr '[:upper:]' '[:lower:]' | \
+    sed 's/[[:space:]]\+/-/g' | \
+    sed 's/[^a-z0-9._-]//g' | \
+    sed 's/--\+/-/g' | \
+    sed 's/^-\|-$//g'
+}
+
+# Generate standardized assignment filename
+generate_assign_name() {
+  local module="$1"
+  local title="$2"
+  local sanitized_title
+  
+  sanitized_title=$(sanitize_filename "$title")
+  printf 'Module-%s_%s' "$module" "$sanitized_title"
+}
+
+# Create the assignment name for filename
+ASSIGN=$(generate_assign_name "$MODULE_NUM" "$ASSIGN_TITLE")
+
+# For homework, derive HWNUM from module number
+if [[ $TYPE == homework ]]; then
+  HWNUM=$(printf '%02d' "$MODULE_NUM")
 fi
 
 # ─────────────── 3. Paths & filenames ───────────────
@@ -114,6 +140,8 @@ s '<COURSE ID>'              "$CLASS"
 s '<Professor / Instructor>' "$INSTRUCTOR"
 s '<Student Name>'           "$STUDENT"
 s '<Term / Year>'            "$DISPLAY_TERM"
+s '<Module Number>'          "Module $MODULE_NUM"
+s '<Assignment Title>'       "$ASSIGN_TITLE"
 
 if [[ $TYPE == homework ]]; then
   # 1. Replace the title-block placeholder

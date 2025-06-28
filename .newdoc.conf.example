@@ -15,4 +15,5 @@ COURSE_TITLE="Course Title Here"
 
 # Uncomment and customize these if you have preferred defaults:
 # TYPE="homework"
-# ASSIGN="Module-1_Homework"
+# MODULE_NUM="1"
+# ASSIGN_TITLE="Case Study Analysis"

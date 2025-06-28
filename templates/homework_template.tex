@@ -72,6 +72,13 @@
 \rhead{<Term / Year> – <COURSE ID>}
 % — footer page number
 \cfoot{\thepage}
+% — ensure headers/footers appear on all pages including title page
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \lhead{<Student Name>}
+  \rhead{<Term / Year> – <COURSE ID>}
+  \cfoot{\thepage}
+}
 % ----------------------------------------------
 
 % ---------- Problem environment ---------------
@@ -105,7 +112,7 @@
     {\small <Professor / Instructor>}\\[2\baselineskip]
 \vfill
 
-    {\HeadingFont\fontsize{20}{22}\selectfont\textbf{Homework~\#\homeworknum}}\\[0.5\baselineskip]
+    {\HeadingFont\fontsize{20}{22}\selectfont\textbf{<Module Number>: <Assignment Title>}}\\[0.5\baselineskip]
     {Submitted by \textbf{<Student Name>}}\\[0.15\baselineskip]
     {\today}
 \end{center}

@@ -56,6 +56,25 @@
 \titlespacing*{\section}{0pt}{6pt plus 2pt}{3pt plus 1pt}
 \titlespacing*{\subsection}{0pt}{4pt plus 2pt}{2pt plus 1pt}
 
+% ---------- Page header/footer ----------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% — left header – student name placeholder
+\lhead{<Student Name>}
+% — right header – course & term placeholder
+\rhead{<Term / Year> – <COURSE ID>}
+% — footer page number
+\cfoot{\thepage}
+% — ensure headers/footers appear on all pages including title page
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \lhead{<Student Name>}
+  \rhead{<Term / Year> – <COURSE ID>}
+  \cfoot{\thepage}
+}
+% ----------------------------------------------
+
 % ---------- Misc packages ---------------------
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
 \usepackage{chngcntr,placeins,setspace}
@@ -88,11 +107,12 @@
       % top rule
       \color{dodblue}\rule{0.85\textwidth}{1pt}\par\vspace{0.8\baselineskip}
 
-      % main title
-      {\HeadingFont\fontsize{24}{26}\selectfont\textbf{<Main Report Title>}}\par\vspace{0.35\baselineskip}
+      % main title - module and assignment info
+      {\HeadingFont\fontsize{24}{26}\selectfont\textbf{<Module Number>: <Assignment Title>}}\par\vspace{0.35\baselineskip}
 
-      % subtitle (optional)
+      % subtitle (optional) - comment out the next line if not needed
       {\large\textit{<Subtitle / Company / Topic>}}\par\vspace{0.8\baselineskip}
+      % If subtitle not used, change vspace above to: \par\vspace{0pt}
 
       % bottom rule
       \color{dodblue}\rule{0.85\textwidth}{1pt}
