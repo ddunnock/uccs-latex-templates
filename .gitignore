@@ -115,6 +115,14 @@ classes/*/*/EMGT*_Project*.tex
 classes/*/*/EMGT*_Report*.tex
 classes/*/*/EMGT*_Midterm*.tex
 classes/*/*/EMGT*_Final*.tex
+classes/*/*/EMGT*.tex
+classes/*/*/SYSE*_Module-*.tex
+classes/*/*/SYSE*_Assignment*.tex
+classes/*/*/SYSE*_Project*.tex
+classes/*/*/SYSE*_Report*.tex
+classes/*/*/SYSE*_Midterm*.tex
+classes/*/*/SYSE*_Final*.tex
+classes/*/*/SYSE*.tex
 classes/*/*/figures/*
 
 # Allow the example file
