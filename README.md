@@ -77,8 +77,12 @@ Designed for formal reports, research papers, and capstone projects with a profe
 
 ```
 uccs-me-syse-latex/
-├── build/                     # Build configuration and CI/CD
-│   ├── Makefile              # Main build automation
+├── build.cmd                 # Cross-platform build wrapper (Unix/Linux/macOS/Git Bash)
+├── build.bat                 # Windows build wrapper (native Windows)
+├── Makefile                  # Root Makefile (delegates to build/Makefile)
+├── build/                    # Build configuration and CI/CD
+│   ├── Makefile              # Unix/Linux/macOS build automation
+│   ├── build.bat             # Windows batch build script
 │   ├── cicd/                 # Continuous integration
 │   └── docker/               # Containerization support
 ├── classes/                  # Course-specific documents
@@ -88,12 +92,14 @@ uccs-me-syse-latex/
 │           ├── figures/     # Course-specific images
 │           └── *.tex        # Generated documents
 ├── scripts/                  # Automation scripts
-│   └── newdoc.sh            # Document scaffolding script
+│   └── newdoc.sh            # Document scaffolding script (Unix/Linux/macOS)
 ├── templates/                # LaTeX templates
 │   ├── homework_template.tex # Homework assignment template
 │   └── report_template.tex   # Report/project template
 └── texmf/                    # Shared LaTeX resources
-    ├── fonts/otf/           # Fira Sans font family
+    ├── fonts/               # Complete font family support
+    │   ├── otf/            # OpenType fonts for XeLaTeX
+    │   └── ttf/            # TrueType fonts for compatibility
     └── images/              # Shared assets (UCCS logo, etc.)
 ```
 
@@ -102,10 +108,13 @@ uccs-me-syse-latex/
 ### Prerequisites
 
 - **XeLaTeX** (recommended) or **Tectonic** for compilation
-- **Build System**: 
-  - **Windows**: Use `build.cmd` (no additional tools needed)
-  - **macOS/Linux**: Use `make` for build automation
-- **Bash** for script execution (Unix systems only)
+- **Build System** (automatically detected):
+  - **Cross-platform**: Use `./build.cmd` (Unix/Linux/macOS/Git Bash)
+  - **Windows**: Use `build.bat` (native Windows Command Prompt/PowerShell)
+  - **Alternative**: Use `make` directly on Unix/Linux/macOS
+- **Document Creation**: 
+  - **Unix/Linux/macOS**: `scripts/newdoc.sh` (bash required)
+  - **Windows**: Manual template copying or WSL/Git Bash for script usage
 
 ### Installation
 
@@ -126,7 +135,7 @@ uccs-me-syse-latex/
 
 ### Creating Documents
 
-#### Method 1: Using the Makefile (Recommended)
+#### Method 1: Using Make (Unix/Linux/macOS)
 
 **Create a homework assignment:**
 ```bash
@@ -141,7 +150,7 @@ make newreport CLASS=EMGT5510 ACAD_TERM=2025_summer ASSIGN="Midterm_Report" \
                COURSE_TITLE="Course Title"
 ```
 
-#### Method 2: Direct Script Usage
+#### Method 2: Direct Script Usage (Unix/Linux/macOS)
 
 **Environment variables:**
 ```bash
@@ -152,7 +161,7 @@ COURSE_TITLE="Course Title" bash scripts/newdoc.sh
 
 **Interactive mode:**
 ```bash
-# Simple interactive mode
+# Simple interactive mode (Unix/Linux/macOS)
 make newdoc
 
 # Or run script directly
@@ -168,27 +177,71 @@ bash scripts/newdoc.sh
 # Course title [optional]: Leadership for Engineers
 ```
 
+#### Method 3: Manual Template Setup (All Platforms)
+
+**For Windows users or when automation isn't available:**
+
+1. **Copy the appropriate template:**
+   ```bash
+   # For homework
+   cp templates/homework_template.tex classes/EMGT5510/2025_summer/EMGT5510_Assignment-Name.tex
+   
+   # For reports
+   cp templates/report_template.tex classes/EMGT5510/2025_summer/EMGT5510_Report-Name.tex
+   ```
+
+2. **Edit the document header** in your new `.tex` file:
+   - Replace `\newcommand{\course}{COURSE}`
+   - Replace `\newcommand{\term}{TERM}`
+   - Replace `\newcommand{\assignment}{ASSIGNMENT}`
+   - Replace `\newcommand{\student}{STUDENT}`
+   - Replace `\newcommand{\instructor}{INSTRUCTOR}`
+   - Replace `\newcommand{\coursetitle}{COURSE TITLE}` (reports only)
+
+3. **Create the directory structure** if it doesn't exist:
+   ```bash
+   mkdir -p classes/EMGT5510/2025_summer/figures
+   mkdir -p classes/EMGT5510/2025_summer/data
+   ```
+
 ### Compiling Documents
 
 #### Cross-Platform Commands (Recommended)
 
-Use `build.cmd` for universal compatibility across all operating systems:
-
+**For Unix/Linux/macOS/Git Bash:**
 ```bash
 # Show help and available commands
-build.cmd help
+./build.cmd help
 
 # Compile a single document
-build.cmd pdf FILE=classes/EMGT5510/2025_summer/EMGT5510_Module-1_Homework.tex
+./build.cmd pdf FILE=classes/EMGT5510/2025_summer/EMGT5510_Module-1_Homework.tex
 
 # Compile all documents
-build.cmd all
+./build.cmd all
 
 # Live compilation (watch mode)
-build.cmd watch FILE=classes/EMGT5510/2025_summer/EMGT5510_Module-1_Homework.tex
+./build.cmd watch FILE=classes/EMGT5510/2025_summer/EMGT5510_Module-1_Homework.tex
 
 # Clean auxiliary files
-build.cmd clean
+./build.cmd clean
+```
+
+**For Windows Command Prompt/PowerShell:**
+```cmd
+REM Show help and available commands
+build.bat help
+
+REM Compile a single document
+build.bat pdf FILE=classes/EMGT5510/2025_summer/EMGT5510_Module-1_Homework.tex
+
+REM Compile all documents
+build.bat all
+
+REM Live compilation (watch mode)
+build.bat watch FILE=classes/EMGT5510/2025_summer/EMGT5510_Module-1_Homework.tex
+
+REM Clean auxiliary files
+build.bat clean
 ```
 
 #### Platform-Specific Commands
@@ -200,11 +253,26 @@ make all
 make watch FILE=classes/EMGT5510/2025_summer/EMGT5510_Module-1_Homework.tex
 ```
 
-**Windows (using batch files):**
+**Windows (using batch files directly):**
 ```cmd
 build\build.bat pdf FILE=classes\EMGT5510\2025_summer\EMGT5510_Module-1_Homework.tex
 build\build.bat all
 build\build.bat clean
+```
+
+#### Direct LaTeX Compilation
+
+**For any platform with XeLaTeX or Tectonic installed:**
+
+```bash
+# Navigate to the document directory
+cd classes/EMGT5510/2025_summer/
+
+# Using XeLaTeX
+xelatex EMGT5510_Module-1_Homework.tex
+
+# Using Tectonic (if available)
+tectonic EMGT5510_Module-1_Homework.tex
 ```
 
 ## 📝 Document Templates
