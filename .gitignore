@@ -81,6 +81,7 @@ Desktop.ini
 #  ──  CONTAINER & ENVIRONMENT BUILD OUTPUTS ────────────────────────────────
 ###############################################################################
 build/
+!build/Makefile
 dist/
 .nox/
 .python-env/           # direnv or virtualenv
