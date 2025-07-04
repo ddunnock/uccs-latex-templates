@@ -115,6 +115,7 @@ classes/*/*/EMGT*_Project*.tex
 classes/*/*/EMGT*_Report*.tex
 classes/*/*/EMGT*_Midterm*.tex
 classes/*/*/EMGT*_Final*.tex
+classes/*/*/figures/*
 
 # Allow the example file
 !classes/*/*/EMGT*_Module-*_example.tex
