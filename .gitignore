@@ -82,6 +82,8 @@ Desktop.ini
 ###############################################################################
 build/
 !build/Makefile
+!build/build.bat
+!build/build.cmd
 dist/
 .nox/
 .python-env/           # direnv or virtualenv

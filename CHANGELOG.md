@@ -25,6 +25,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+#### Cross-Platform Build System
+- **Universal build wrapper** (`build.cmd`) for seamless cross-platform compatibility
+- **Windows-native batch file** (`build.bat`) with full feature parity to Unix Makefile
+- **Automatic OS detection** and appropriate build tool selection
+- **Windows Command Prompt support** eliminating need for Git Bash or WSL
+- **PDF auto-opening** with platform-specific commands (open/xdg-open/start)
+- **Engine auto-detection** across Windows and Unix systems (tectonic/xelatex/latexmk)
+
+#### Enhanced Student Accessibility
+- **No additional tool requirements** for Windows users beyond LaTeX engine
+- **Consistent command interface** across all operating systems
+- **Cross-platform path handling** with automatic separator conversion
+- **Universal documentation** with platform-specific examples
+
 ## [1.0.0] - 2025-06-27
 
 ### Added

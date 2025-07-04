@@ -102,8 +102,10 @@ uccs-me-syse-latex/
 ### Prerequisites
 
 - **XeLaTeX** (recommended) or **Tectonic** for compilation
-- **Make** for build automation
-- **Bash** for script execution
+- **Build System**: 
+  - **Windows**: Use `build.cmd` (no additional tools needed)
+  - **macOS/Linux**: Use `make` for build automation
+- **Bash** for script execution (Unix systems only)
 
 ### Installation
 
@@ -168,19 +170,41 @@ bash scripts/newdoc.sh
 
 ### Compiling Documents
 
-**Compile a single document:**
+#### Cross-Platform Commands (Recommended)
+
+Use `build.cmd` for universal compatibility across all operating systems:
+
+```bash
+# Show help and available commands
+build.cmd help
+
+# Compile a single document
+build.cmd pdf FILE=classes/EMGT5510/2025_summer/EMGT5510_Module-1_Homework.tex
+
+# Compile all documents
+build.cmd all
+
+# Live compilation (watch mode)
+build.cmd watch FILE=classes/EMGT5510/2025_summer/EMGT5510_Module-1_Homework.tex
+
+# Clean auxiliary files
+build.cmd clean
+```
+
+#### Platform-Specific Commands
+
+**Unix/Linux/macOS (using Make):**
 ```bash
 make pdf FILE=classes/EMGT5510/2025_summer/EMGT5510_Module-1_Homework.tex
-```
-
-**Compile all documents:**
-```bash
 make all
+make watch FILE=classes/EMGT5510/2025_summer/EMGT5510_Module-1_Homework.tex
 ```
 
-**Live compilation (watch mode):**
-```bash
-make watch FILE=classes/EMGT5510/2025_summer/EMGT5510_Module-1_Homework.tex
+**Windows (using batch files):**
+```cmd
+build\build.bat pdf FILE=classes\EMGT5510\2025_summer\EMGT5510_Module-1_Homework.tex
+build\build.bat all
+build\build.bat clean
 ```
 
 ## 📝 Document Templates
